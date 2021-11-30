@@ -1,4 +1,4 @@
-package com.ya.grupp5b.application;
+package com.ya.grupp5b.skirace.application;
 
 public class Main {
 
