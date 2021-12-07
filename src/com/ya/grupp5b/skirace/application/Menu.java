@@ -2,6 +2,8 @@ package com.ya.grupp5b.skirace.application;
 
 import java.util.Scanner;
 
+
+
 public class Menu {
 
 	void runMenu() {
@@ -10,9 +12,9 @@ public class Menu {
 
 		while (menuChoice != 5) {
 			Scanner scan = new Scanner(System.in);
-			System.out.println("1. Lägg till deltagare");
+			System.out.println("1. Lï¿½gg till deltagare");
 			System.out.println("2. Kolla mellantid & placering ");
-			System.out.println("3. Tidtagning målgång");
+			System.out.println("3. Tidtagning mï¿½lgï¿½ng");
 			System.out.println("4. Visa resultat ");
 			System.out.println("5. Avsluta");
 			System.out.print("Val: ");
