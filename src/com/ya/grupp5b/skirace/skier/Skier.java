@@ -3,6 +3,7 @@ package com.ya.grupp5b.skirace.skier;
 public class Skier extends Person {
 
 	private int skierNumber;
+	
 
 	public Skier(String firstName, String lastName) {
 		super(firstName, lastName);
@@ -22,6 +23,9 @@ public class Skier extends Person {
 		this.skierNumber = skierNumber;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Åkare " + firstName + ", " + lastName + ", #" + skierNumber;
+	}
 	
 }
