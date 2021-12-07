@@ -22,4 +22,6 @@ public class Skier extends Person {
 		this.skierNumber = skierNumber;
 	}
 
+	
+	
 }
