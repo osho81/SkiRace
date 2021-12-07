@@ -1,8 +1,8 @@
 package com.ya.grupp5b.skirace.skier;
 
 public class Person {
-	private String firstName;
-	private String lastName;
+	protected String firstName;
+	protected String lastName;
 
 	public Person(String firstName, String lastName) {
 		super();
@@ -21,5 +21,6 @@ public class Person {
 	public String getLastName() {
 		return lastName;
 	}
+	
 
 }
