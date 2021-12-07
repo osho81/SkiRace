@@ -1,10 +1,25 @@
 package com.ya.grupp5b.skirace.skier;
 
-public class Skier {
+public class Skier extends Person {
 
-	int skierNumber;
-	String firstName;
-	String lastName;
-	
-	
+	private int skierNumber;
+
+	public Skier(String firstName, String lastName) {
+		super(firstName, lastName);
+
+	}
+
+	public Skier(int skierNumber) {
+		super();
+		this.skierNumber = skierNumber;
+	}
+
+	public int getSkierNumber() {
+		return skierNumber;
+	}
+
+	public void setSkierNumber(int skierNumber) {
+		this.skierNumber = skierNumber;
+	}
+
 }
