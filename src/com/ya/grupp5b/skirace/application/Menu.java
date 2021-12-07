@@ -2,11 +2,11 @@ package com.ya.grupp5b.skirace.application;
 
 import java.util.Scanner;
 
-
+import com.ya.grupp5b.skirace.tools.*;
 
 public class Menu {
 
-	void runMenu() {
+	static void runMenu() {
 
 		int menuChoice = 0;
 
@@ -23,6 +23,7 @@ public class Menu {
 
 			switch (menuChoice) {
 			case 1:
+				SkierReg.addSkier();
 				break;
 			case 2:
 				break;
