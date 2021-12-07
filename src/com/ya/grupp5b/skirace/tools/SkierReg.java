@@ -1,4 +1,4 @@
-package com.ya.grupp5b.skirace.skier;
+package com.ya.grupp5b.skirace.tools;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Vector;
+
+import com.ya.grupp5b.skirace.skier.Skier;
 
 public class SkierReg {
 
