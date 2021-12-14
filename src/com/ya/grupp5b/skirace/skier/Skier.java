@@ -7,11 +7,13 @@ public class Skier extends Person implements Comparable<Skier> {
 	private int skierNumber;
 	private LocalTime indivStartTime; 
 
+	// Constructor 1
 	public Skier(String firstName, String lastName) {
 		super(firstName, lastName);
 
 	}
 
+	// Constructor 2
 	public Skier(int skierNumber) {
 		super();
 		this.skierNumber = skierNumber;

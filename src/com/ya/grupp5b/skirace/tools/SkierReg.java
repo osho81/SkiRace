@@ -1,12 +1,8 @@
 package com.ya.grupp5b.skirace.tools;
 
-import java.time.LocalTime;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 import com.ya.grupp5b.skirace.skier.Skier;
 
@@ -23,7 +19,7 @@ public class SkierReg {
 
 	}
 
-	public static void addSkier() { // Tar in tävlandens namn och delar ut startnummer
+	public static List<Skier> addSkier() { // Tar in tävlandens namn och delar ut startnummer
 
 		Scanner scan = new Scanner(System.in);
 		int totalSkiers = totalSkiers();
@@ -31,6 +27,7 @@ public class SkierReg {
 		List<Integer> numbersList = new Vector<Integer>();
 		List<Skier> skiersList = new ArrayList<Skier>();
 
+		// Fyll i numbersList med nummer; fyll i skiersList med nya tävlande
 		for (int i = 1; i <= totalSkiers; i++) {
 			numbersList.add(i);
 
@@ -38,30 +35,51 @@ public class SkierReg {
 			String firstName = scan.nextLine();
 			System.out.println("Efternamn: ");
 			String lastName = scan.nextLine();
+
+			// Skapa objekt (tävlande) av Skier-klass; constructor 1
 			Skier newSkier = new Skier(firstName, lastName);
+
+			// Lägg till skapat objektet (tävlande) i listan
 			skiersList.add(newSkier);
 
 		}
 
+		// Tilldela startnummer till varje tävlande
 		for (int j = totalSkiers; j > 0; j--) {
-			int randomValue = (int) (Math.random() * (1 * j));
-			Skier newSkier = skiersList.get(j - 1);
+			int randomValue = (int) (Math.random() * (1 * j)); // exempel random: 2
+			Skier newSkier = skiersList.get(j - 1); // exempel tävlande nr 4: Pelle Oskarsson
+
+			// Gällande tävlande (exempel: Pelle Oskarsson, nr 4) i skiersList
+			// Tilldelas ett startnummer med hjälp av setSkierNumber i klassen SKier
+			// Exempel: numbersList = 1,2,3,4,5; numbersList(2) = 3
 			newSkier.setSkierNumber(numbersList.get(randomValue));
+
+			// Ta bort redan tilldelat nummer ur numbersList
 			numbersList.remove(randomValue);
+
 		}
 
-		LocalTime raceStart = LocalTime.of(12,0,0,0);
-		for (int j = totalSkiers; j > 0; j--) {
-			LocalTime givenStartTime = raceStart.plus(15 * skiersList.get(j-1).getSkierNumber(), ChronoUnit.SECONDS); // Ex: 15 sec * skie nr
-			skiersList.get(j-1).setIndivStartTime(givenStartTime);
+		// Hämta starttid
+		LocalTime raceStart = Timing.startingTime(totalSkiers);
+
+		// Tilldela starttid och öka (15 sekunder * startnummer) för varje tävlande
+		for (int j = totalSkiers; j > 0; j--) { // Ex:
+
+			// Exempel: första loopen bakifrån är tävlande nr 3 på index 4
+			// Öka raceStart med (15 sekunder * startnummer)
+			LocalTime givenStartTime = raceStart.plus(15 * skiersList.get(j - 1).getSkierNumber(), ChronoUnit.SECONDS);
+
+			// Tilldela denna starttid
+			skiersList.get(j - 1).setIndivStartTime(givenStartTime);
 		}
 
-		
-		Collections.sort(skiersList); 
+		// Sorterar efter skier (se Skiers compareTo)
+//		Collections.sort(skiersList);
 		for (Skier newSkier : skiersList) {
 			System.out.println(newSkier);
 		}
-		
+		return skiersList;
+
 	}
 
 }
