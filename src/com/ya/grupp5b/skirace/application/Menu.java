@@ -1,7 +1,6 @@
 package com.ya.grupp5b.skirace.application;
 
 import java.time.LocalTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
