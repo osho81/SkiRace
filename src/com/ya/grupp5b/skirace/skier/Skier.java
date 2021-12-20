@@ -37,8 +37,8 @@ public class Skier extends Person implements Comparable<Skier> {
 
 	@Override
 	public String toString() {
-		return "#" + skierNumber + ", Starttid: " + indivStartTime + ", Förnamn: " + firstName
-				+ ", Efternamn: " + lastName + "";
+		return String.format("#" + skierNumber + ", Starttid: " + indivStartTime + ", Förnamn: " + firstName
+				+ ", Efternamn: " + lastName + "");
 	}
 	
 	@Override
