@@ -8,11 +8,11 @@ import com.ya.grupp5b.skirace.skier.Skier;
 
 public class SkierReg {
 
-	public static int totalSkiers() { // Tar in antalet tävlande
+	static int totalSkiers() { // Tar in antalet tävlande
 
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Hur många ska tävla? ");
-		int totalSkiers = scan.nextInt();
+		int totalSkiers = readInt(scan);
 		scan.nextLine();
 
 		return totalSkiers;
@@ -63,23 +63,30 @@ public class SkierReg {
 		LocalTime raceStart = Timing.startingTime(totalSkiers);
 
 		// Tilldela starttid och öka (15 sekunder * startnummer) för varje tävlande
-		for (int j = totalSkiers; j > 0; j--) { // Ex:
+		for (int j = 0; j < skiersList.size(); j++) { // Ex:
 
 			// Exempel: första loopen bakifrån är tävlande nr 3 på index 4
 			// Öka raceStart med (15 sekunder * startnummer)
-			LocalTime givenStartTime = raceStart.plus(15 * skiersList.get(j - 1).getSkierNumber(), ChronoUnit.SECONDS);
+			LocalTime givenStartTime = raceStart.plus(15 * skiersList.get(j).getSkierNumber() - 15, ChronoUnit.SECONDS);
 
 			// Tilldela denna starttid
-			skiersList.get(j - 1).setIndivStartTime(givenStartTime);
+			skiersList.get(j).setIndivStartTime(givenStartTime);
 		}
 
 		// Sorterar efter skier (se Skiers compareTo)
-//		Collections.sort(skiersList);
+		Collections.sort(skiersList);
 		for (Skier newSkier : skiersList) {
 			System.out.println(newSkier);
 		}
 		return skiersList;
+	}
 
+	static int readInt(Scanner scan) {
+		while (!scan.hasNextInt()) {
+			scan.nextLine();
+			System.out.print("Felaktig inmatning \nProva igen: ");
+		}
+		return scan.nextInt();
 	}
 
 }

@@ -30,7 +30,7 @@ public class Timing {
 
 		// Beräkna skillnad mellan startTid och nuvarande tid
 		Duration duration = Duration.between(chosenStartTime, currentTime);
-		System.out.println("Lapsed time: " + duration);
+//		System.out.println("Lapsed time: " + duration);
 
 		// Metoder för att dra ut läsbar info ur duration
 		// VI TAR SEDAN MED BARA DET VI BEHÖVER
@@ -39,8 +39,8 @@ public class Timing {
 		long durationInMin = duration.toMinutes(); // Tar ej hänsyn till andra tidsenheter
 		long durationInSec = duration.toSeconds();
 		long durationInNs = duration.toNanos();
-		System.out.println(durationInHour + " hours or " + durationInMin + " minutes or " + durationInSec
-				+ " seconds or " + durationInNs + " nano seconds.");
+//		System.out.println(durationInHour + " hours or " + durationInMin + " minutes or " + durationInSec
+//				+ " seconds or " + durationInNs + " nano seconds.");
 
 		// Dra ur en "normal" tidsangivelse ur duration; hh:mm:ss:ns
 		long durationH = duration.toHours();

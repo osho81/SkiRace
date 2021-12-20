@@ -7,7 +7,7 @@ import java.util.Scanner;
 import com.ya.grupp5b.skirace.skier.Skier;
 import com.ya.grupp5b.skirace.tools.*;
 
-public class Menu {
+public class Application {
 
 	static void runMenu() {
 
@@ -62,11 +62,6 @@ public class Menu {
 		for (var skier : skiersList) {
 			if (skier.getSkierNumber() == chosenStartNum) {
 				currentIndex = skiersList.indexOf(skier);
-				
-				// Tillfälliga kontrollutskrifter
-				System.out.println(skier);
-				System.out.println(currentIndex);
-				System.out.println(skier.getSkierNumber());
 			}
 		}
 
