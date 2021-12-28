@@ -56,7 +56,7 @@ public class Skier extends Person implements Comparable<Skier> {
 	@Override
 	public String toString() {
 		return String.format("#" + skierNumber + ", Starttid: " + indivStartTime + ", Förnamn: " + firstName
-				+ ", Efternamn: " + lastName + "");
+				+ ", Efternamn: " + lastName +" " + goalTime+"");
 	}
 	
 	@Override
@@ -64,7 +64,29 @@ public class Skier extends Person implements Comparable<Skier> {
 
         if (this.skierNumber < otherSkier.skierNumber) {
             return -1;
-        } else if (this.skierNumber < otherSkier.skierNumber) {
+        } else if (this.skierNumber > otherSkier.skierNumber) {
+            return 1;
+        } else {
+            return 0;
+        }
+	}
+
+	public int compareGoalTime(Skier otherSkier) {
+		
+        if (this.goalTime.getSecond() < otherSkier.goalTime.getSecond()) {
+            return -1;
+        } else if (this.goalTime.getSecond() > otherSkier.goalTime.getSecond()) {
+            return 1;
+        } else {
+            return 0;
+        }
+		
+	}
+	
+	public int compareToTemp(Skier otherSkier) {
+        if (this.tempTime.getSecond() < otherSkier.tempTime.getSecond()) {
+            return -1;
+        } else if (this.tempTime.getSecond() > otherSkier.tempTime.getSecond()) {
             return 1;
         } else {
             return 0;
