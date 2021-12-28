@@ -5,7 +5,9 @@ import java.time.LocalTime;
 public class Skier extends Person implements Comparable<Skier> {
 
 	private int skierNumber;
-	private LocalTime indivStartTime; 
+	private LocalTime indivStartTime;
+	private LocalTime tempTime;
+	private LocalTime goalTime;
 
 	// Constructor 1
 	public Skier(String firstName, String lastName) {
@@ -33,6 +35,22 @@ public class Skier extends Person implements Comparable<Skier> {
 
 	public void setSkierNumber(int skierNumber) {
 		this.skierNumber = skierNumber;
+	}	
+
+	public LocalTime getTempTime() {
+		return tempTime;
+	}
+
+	public void setTempTime(LocalTime tempTime) {
+		this.tempTime = tempTime;
+	}
+
+	public LocalTime getGoalTime() {
+		return goalTime;
+	}
+
+	public void setGoalTime(LocalTime goalTime) {
+		this.goalTime = goalTime;
 	}
 
 	@Override
