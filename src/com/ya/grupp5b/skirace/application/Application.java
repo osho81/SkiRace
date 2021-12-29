@@ -55,29 +55,27 @@ public class Application {
 	private void runInnerMenu() {
 
 		int menuChoice = 0;
-		while (menuChoice != 5) {
+		while (menuChoice != 4) {
 
 			menu.printInnerMenu();
 			menuChoice = Input.readInt();
 
 			switch (menuChoice) {
 			case 1:
-				regTempTime(); // Kolla mellantid & placering för vald åkare (Ska den heta regTempTime?)
+				checkTempTime(); // Kolla mellantid & placering för vald åkare
+				CompareTempTime tempCheck = new CompareTempTime(); // Visa och jämför mellantid
+				Collections.sort(race.getSkierList(), tempCheck);
+//				printSkierList();
 				break;
 			case 2:
 				regGoalTime(); // Registrera måltid för vald åkare
 				break;
 			case 3:
-				CompareTempTime tempCheck = new CompareTempTime(); // Visa och jämför mellantid
-				Collections.sort(race.getSkierList(), tempCheck);
-				printSkierList();
-				break;
-			case 4:
 				CompareGoalTime goalCheck = new CompareGoalTime(); // Visa och jämför måltid
 				Collections.sort(race.getSkierList(), goalCheck);
 				printSkierList();
 				break;
-			case 5:
+			case 4:
 				// Avsluta
 				break;
 			default:
@@ -144,7 +142,10 @@ public class Application {
 	}
 
 	// METOD: val 3 i menyn - dvs. checka specific tävlandes löpta tid & placering
-	private void regTempTime() {
+	private void checkTempTime() {
+
+		CompareTempTime tempCheck = new CompareTempTime(); // Visa och jämför mellantid
+		Collections.sort(race.getSkierList(), tempCheck);
 
 		System.out.println("Vilken tävlande vill du kolla nuvarande mellantid & placering för?");
 		int chosenStartNum = Input.readInt();
@@ -159,8 +160,9 @@ public class Application {
 
 		// Kom åt starttid för objektet på det funna indexet
 		LocalTime chosenIndivStartTime = race.getSkierList().get(currentIndex).getIndivStartTime();
-		race.getSkierList().get(currentIndex).setTempTime(Timing.calcDuration(chosenIndivStartTime));
-		System.out.println("Vald tävlande har åkt i: " + race.getSkierList().get(currentIndex).getTempTime());
+		LocalTime currentTempTime = Timing.calcDuration(chosenIndivStartTime);
+		System.out.println("Vald tävlande har åkt i: " + currentTempTime + " och placering är"
+				+ " " +  race.getSkierList().indexOf(race.getSkierList().get((currentIndex) + 1)));
 	}
 
 	// METOD: val 2 i menyn - dvs. registrera måltid för vald åkare

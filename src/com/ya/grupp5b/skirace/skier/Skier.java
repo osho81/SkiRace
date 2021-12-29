@@ -4,11 +4,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import com.ya.grupp5b.skirace.tools.Timing;
+
 public class Skier extends Person implements Comparable<Skier> {
 
 	private int skierNumber;
 	private LocalTime indivStartTime;
-	private LocalTime tempTime;
 	private LocalTime goalTime;
 
 	// Constructor 1
@@ -39,14 +40,6 @@ public class Skier extends Person implements Comparable<Skier> {
 		this.skierNumber = skierNumber;
 	}	
 
-	public LocalTime getTempTime() {
-		return tempTime;
-	}
-
-	public void setTempTime(LocalTime tempTime) {
-		this.tempTime = tempTime;
-	}
-
 	public LocalTime getGoalTime() {
 		return goalTime;
 	}
@@ -60,8 +53,8 @@ public class Skier extends Person implements Comparable<Skier> {
 		DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss"); // formatting options
         String formattedIndivStartTime = indivStartTime.format(formatPattern); // apply pattern on our date obj
         
-		return String.format("#" + skierNumber + ", Starttid: " + formattedIndivStartTime + ", Förnamn: " + firstName
-				+ ", Efternamn: " + lastName + " Mellantid: " + tempTime +" Målgång: " + goalTime +"");
+        return String.format("#" + skierNumber + ", Starttid: " + formattedIndivStartTime + ", Förnamn: " + firstName
+				+ ", Efternamn: " + lastName + " Mellantid: " + Timing.calcDuration(indivStartTime) + " Målgång: " + goalTime +"");
 	}
 	
 	@Override
@@ -70,17 +63,6 @@ public class Skier extends Person implements Comparable<Skier> {
         if (this.skierNumber < otherSkier.skierNumber) {
             return -1;
         } else if (this.skierNumber > otherSkier.skierNumber) {
-            return 1;
-        } else {
-            return 0;
-        }
-	}
-
-	
-	public int compareToTemp(Skier otherSkier) {
-        if (this.tempTime.getSecond() < otherSkier.tempTime.getSecond()) {
-            return -1;
-        } else if (this.tempTime.getSecond() > otherSkier.tempTime.getSecond()) {
             return 1;
         } else {
             return 0;
