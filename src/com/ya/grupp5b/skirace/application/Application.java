@@ -10,7 +10,8 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import com.ya.grupp5b.skirace.race.Race;
-import com.ya.grupp5b.skirace.skier.CompareSkier;
+import com.ya.grupp5b.skirace.skier.CompareGoalTime;
+import com.ya.grupp5b.skirace.skier.CompareTempTime;
 import com.ya.grupp5b.skirace.skier.Skier;
 import com.ya.grupp5b.skirace.tools.*;
 
@@ -35,8 +36,8 @@ public class Application {
 			case 1:
 				race.setRaceStart(selectStartTime());
 				addSkier();
-//				Collections.sort(race.getSkierList());//Sorterar efter startnummer
-//				printSkierList();
+				Collections.sort(race.getSkierList());//Sorterar efter startnummer
+				printSkierList();
 				runInnerMenu();
 				break;
 			case 2:
@@ -51,14 +52,15 @@ public class Application {
 	private void runInnerMenu() {
 
 		int menuChoice = 0;
-		while (menuChoice != 4) {
+		while (menuChoice != 5) {
 			
 			menu.printInnerMenu();
 			menuChoice = Input.readInt();
 
 			switch (menuChoice) {
 			case 1:
-				checkTempTime();
+				regTempTime();
+				
 				// Kolla mellantid & placering
 				break;
 			case 2:
@@ -66,13 +68,19 @@ public class Application {
 				
 				break;
 			case 3:
-				CompareSkier test = new CompareSkier();
-				Collections.sort(race.getSkierList(), test);
+				CompareTempTime tempCheck = new CompareTempTime();
+				Collections.sort(race.getSkierList(), tempCheck);
 				printSkierList();
 				// Visa resultat
 				break;
 			case 4:
+				CompareGoalTime goalCheck = new CompareGoalTime();
+				Collections.sort(race.getSkierList(), goalCheck);
+				printSkierList();
 				// Avsluta
+				break;
+			case 5:
+				//Avsluta
 				break;
 			default:
 				System.out.println("Felaktigt val");
@@ -159,7 +167,7 @@ public class Application {
 	}
 
 	// Metod för att köra val 2 - dvs. checka specific tävlandes löpta tid
-	private void checkTempTime() {
+	private void regTempTime() {
 
 		System.out.println("Vilken tävlande vill du checka tid för?");
 		int chosenStartNum = Input.readInt();
@@ -178,7 +186,7 @@ public class Application {
 		race.getSkierList().get(currentIndex).setTempTime(Timing.calcDuration(chosenIndivStartTime));
 		System.out.println("Vald tävlande har åkt i: " + race.getSkierList().get(currentIndex).getTempTime());
 		// Anropa tidsberäkningsmetoden med den utdragna starttiden
-
+		
 	}
 
 	private void regGoalTime() {
