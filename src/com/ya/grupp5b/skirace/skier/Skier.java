@@ -1,6 +1,8 @@
 package com.ya.grupp5b.skirace.skier;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Skier extends Person implements Comparable<Skier> {
 
@@ -54,9 +56,12 @@ public class Skier extends Person implements Comparable<Skier> {
 	}
 
 	@Override
-	public String toString() {
-		return String.format("#" + skierNumber + ", Starttid: " + indivStartTime + ", Förnamn: " + firstName
-				+ ", Efternamn: " + lastName +" " + goalTime+"");
+	public String toString() {	
+		DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss"); // formatting options
+        String formattedIndivStartTime = indivStartTime.format(formatPattern); // apply pattern on our date obj
+        
+		return String.format("#" + skierNumber + ", Starttid: " + formattedIndivStartTime + ", Förnamn: " + firstName
+				+ ", Efternamn: " + lastName + " Mellantid: " + tempTime +" Målgång: " + goalTime +"");
 	}
 	
 	@Override
@@ -71,17 +76,6 @@ public class Skier extends Person implements Comparable<Skier> {
         }
 	}
 
-	public int compareGoalTime(Skier otherSkier) {
-		
-        if (this.goalTime.getSecond() < otherSkier.goalTime.getSecond()) {
-            return -1;
-        } else if (this.goalTime.getSecond() > otherSkier.goalTime.getSecond()) {
-            return 1;
-        } else {
-            return 0;
-        }
-		
-	}
 	
 	public int compareToTemp(Skier otherSkier) {
         if (this.tempTime.getSecond() < otherSkier.tempTime.getSecond()) {

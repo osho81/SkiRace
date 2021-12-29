@@ -22,7 +22,7 @@ public class Timing {
 		int durationM = (int)duration.toMinutesPart(); // Tar hänsyn till andra tidsenheter
 		int durationS = (int)duration.toSecondsPart();
 		int durationNs = (int)duration.toNanosPart();
-		int durationTest = (int) duration.toSeconds();
+
 		return LocalTime.of(durationH, durationM, durationS, durationNs);
 	}
 
