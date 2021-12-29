@@ -5,12 +5,12 @@ import java.time.LocalTime;
 import java.util.Comparator;
 
 public class CompareTempTime implements Comparator<Skier> {
-
+	
 	public int compare(Skier skier1, Skier skier2) {
-		LocalTime testTime = LocalTime.of(0, 0, 0, 0);
-		Duration duration1 = Duration.between(testTime, skier1.getTempTime());
+		LocalTime nowTime = LocalTime.now();
+		Duration duration1 = Duration.between(nowTime, skier1.getIndivStartTime());
 		int durationInSec1 = (int) duration1.toSeconds();
-		Duration duration2 = Duration.between(testTime, skier2.getTempTime());
+		Duration duration2 = Duration.between(nowTime, skier2.getIndivStartTime());
 		int durationInSec2 = (int) duration2.toSeconds();
 
 		if (durationInSec1 < durationInSec2) {
