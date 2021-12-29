@@ -2,7 +2,6 @@ package com.ya.grupp5b.skirace.skier;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 import com.ya.grupp5b.skirace.tools.Timing;
 
