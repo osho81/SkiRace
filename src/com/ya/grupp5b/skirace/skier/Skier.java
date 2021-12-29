@@ -3,7 +3,7 @@ package com.ya.grupp5b.skirace.skier;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import com.ya.grupp5b.skirace.tools.Timing;
+
 
 public class Skier extends Person implements Comparable<Skier> {
 
@@ -52,8 +52,7 @@ public class Skier extends Person implements Comparable<Skier> {
 		DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss"); // formatting options
         String formattedIndivStartTime = indivStartTime.format(formatPattern); // apply pattern on our date obj
         
-        return String.format("#" + skierNumber + ", Starttid: " + formattedIndivStartTime + ", Förnamn: " + firstName
-				+ ", Efternamn: " + lastName + " Mellantid: " + Timing.calcDuration(indivStartTime) + " Målgång: " + goalTime +"");
+        return String.format("Starttid: " + formattedIndivStartTime + "  Startnummer: #"+ skierNumber + " Namn: " + firstName + " " + lastName);
 	}
 	
 	@Override
