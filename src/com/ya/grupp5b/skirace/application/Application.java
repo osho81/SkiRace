@@ -41,9 +41,7 @@ public class Application {
 				runInnerMenu();
 				break;
 			case 2:
-				// Tillfällig exit
 				System.out.println("Stänger ned...");
-				System.exit(0);
 				break;
 			default:
 				System.out.println("Felaktigt val");
@@ -73,7 +71,8 @@ public class Application {
 				printSkierGoalTime();
 				break;
 			case 4:
-				// Avsluta
+				System.out.println("Stänger ned...");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Felaktigt val");
