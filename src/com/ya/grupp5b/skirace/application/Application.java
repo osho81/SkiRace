@@ -2,10 +2,7 @@ package com.ya.grupp5b.skirace.application;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Collections;
-import java.util.List;
-import java.util.Vector;
 
 import com.ya.grupp5b.skirace.race.Race;
 import com.ya.grupp5b.skirace.skier.CompareGoalTime;
@@ -83,12 +80,33 @@ public class Application {
 
 	// METOD: Användaren får välja starttid för tävlingen
 	private LocalTime selectStartTime() {
-		System.out.println("Vilken tid startar tävlingen? ");
+		System.out.println("Vilken tid startar tävlingen?");
+		System.out.println("Starttid timme: ");
 		int h = Input.readInt();
+		System.out.println("Starttid minut: ");
 		int m = Input.readInt();
-		int s = Input.readInt();
 
-		LocalTime raceStart = LocalTime.of(h, m, s, 0);
+		LocalTime timeNow = LocalTime.now();
+		int hNow = timeNow.getHour();
+		int mNow = timeNow.getMinute();
+
+		while (h >= 24 || m >= 60 || h > hNow || m > mNow) { // Felhantering starttid
+			if (h >= 24 || m >= 60) {
+				System.out.println("Fel format! Försök igen\nTimme: 1-23\nMinut: 1-59");
+				System.out.println("Starttid timme: ");
+				h = Input.readInt();
+				System.out.println("Starttid minut: ");
+				m = Input.readInt();
+
+			} else if (h > hNow || m > mNow) {
+				System.out.println("Starttiden kan inte vara i framtiden, försök igen");
+				System.out.println("Starttid timme: ");
+				h = Input.readInt();
+				System.out.println("Starttid minut: ");
+				m = Input.readInt();
+			}
+		}
+		LocalTime raceStart = LocalTime.of(h, m, 0, 0);
 		return raceStart;
 	}
 
@@ -107,8 +125,10 @@ public class Application {
 		System.out.println("Målgångstid\t\t#Startnr\t\tPlacering\t\tNamn");
 		for (int i = 0; i < race.getSkierList().size(); i++) {
 			DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss:SSSSSS"); // formatting options
-	        String formattedGoalTime = race.getSkierList().get(i).getGoalTime().format(formatPattern); 
-			System.out.println(formattedGoalTime + "\t\t#"	+ race.getSkierList().get(i).getSkierNumber() + "\t\t\t" + (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " " + race.getSkierList().get(i).getLastName());
+			String formattedGoalTime = race.getSkierList().get(i).getGoalTime().format(formatPattern);
+			System.out.println(formattedGoalTime + "\t\t#" + race.getSkierList().get(i).getSkierNumber() + "\t\t\t"
+					+ (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " "
+					+ race.getSkierList().get(i).getLastName());
 		}
 	}
 
@@ -117,16 +137,17 @@ public class Application {
 		CompareTempTime tempCheck = new CompareTempTime(); // Jämför mellantid
 		Collections.sort(race.getSkierList(), tempCheck);
 
-
 		System.out.println("Mellantid\t\t#Startnr\t\tPlacering\t\tNamn");
 
 		for (int i = 0; i < race.getSkierList().size(); i++) {
 
 			LocalTime currentTempTime = Timing.calcDuration(race.getSkierList().get(i).getIndivStartTime());
 			DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss:SSSSSS"); // formatting options
-	        String formattedcurrentTempTime = currentTempTime.format(formatPattern); 
+			String formattedcurrentTempTime = currentTempTime.format(formatPattern);
 
-			System.out.println(formattedcurrentTempTime + "\t\t#" + race.getSkierList().get(i).getSkierNumber() + "\t\t\t" + (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " " + race.getSkierList().get(i).getLastName());
+			System.out.println(formattedcurrentTempTime + "\t\t#" + race.getSkierList().get(i).getSkierNumber()
+					+ "\t\t\t" + (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " "
+					+ race.getSkierList().get(i).getLastName());
 		}
 	}
 
@@ -147,11 +168,15 @@ public class Application {
 		}
 
 		// Kom åt starttid för objektet på det funna indexet
+
 		LocalTime currentTempTime = Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime());
 		System.out.println("Mellantiden " + currentTempTime + " är tagen för skidåkare med startnummer #"
 				+ race.getSkierList().get(currentIndex).getSkierNumber() + ", "
 				+ race.getSkierList().get(currentIndex).getFirstName() + " "
-				+ race.getSkierList().get(currentIndex).getLastName() + ", placering: " + (currentIndex + 1)+"\n");
+				+ race.getSkierList().get(currentIndex).getLastName() + ", placering: " + (currentIndex + 1) + "\n");
+
+		System.out.println("Du kan inte starta innan tiden infinner sig");
+
 	}
 
 	// METOD: val 2 i menyn - dvs. registrera måltid för vald åkare

@@ -14,8 +14,7 @@ public class Timing {
 
 		// Beräkna skillnad mellan startTid och nuvarande tid
 		Duration duration = Duration.between(chosenStartTime, currentTime);
-//		System.out.println("Lapsed time: " + duration);
-
+		//System.out.println("Lapsed time: " + duration);
 
 		// Dra ur en "normal" tidsangivelse ur duration; hh:mm:ss:ns
 		int durationH = (int)duration.toHours();
@@ -27,3 +26,4 @@ public class Timing {
 	}
 
 }
+
