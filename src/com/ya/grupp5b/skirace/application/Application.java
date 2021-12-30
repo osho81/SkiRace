@@ -35,12 +35,15 @@ public class Application {
 			switch (menuChoice) {
 			case 1:
 				race.setRaceStart(selectStartTime());
-				addSkier();
+				AddSkier.addSkier(race);
 				Collections.sort(race.getSkierList());// Sorterar efter startnummer
 				printSkierList();
 				runInnerMenu();
 				break;
 			case 2:
+				// Tillfällig exit
+				System.out.println("Stänger ned...");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Felaktigt val");
@@ -90,44 +93,6 @@ public class Application {
 		return raceStart;
 	}
 
-	// METOD: Användaren får lägga till antal åkare och åkare
-	private void addSkier() {
-
-		System.out.println("Hur många ska tävla? ");
-		int totalSkiers = Input.readInt();
-
-		List<Integer> numbersList = new Vector<Integer>();
-
-		// Fyll i numbersList med nummer; fyll i skiersList med nya tävlande
-		for (int i = 1; i <= totalSkiers; i++) {
-			numbersList.add(i);
-			System.out.println("Förnamn: ");
-			String firstName = Input.readString();
-			System.out.println("Efternamn: ");
-			String lastName = Input.readString();
-			Skier newSkier = new Skier(firstName, lastName);
-			race.setSkierList(newSkier);
-		}
-
-		// Tilldela startnummer till varje tävlande
-		for (int j = totalSkiers; j > 0; j--) {
-			int randomValue = (int) (Math.random() * (1 * j));
-			Skier newSkier = race.getSkierList().get(j - 1);
-			newSkier.setSkierNumber(numbersList.get(randomValue));
-			// Ta bort redan tilldelat nummer ur numbersList (så att det inte går att få
-			// samma nr)
-			numbersList.remove(randomValue);
-
-		}
-
-		// Tilldela starttid och öka (15 sekunder * startnummer) för varje tävlande
-		for (int j = 0; j < race.getSkierList().size(); j++) { // Ex:
-			race.getSkierList().get(j).setIndivStartTime(race.getRaceStart()
-					.plus(15 * race.getSkierList().get(j).getSkierNumber() - 15, ChronoUnit.SECONDS));
-		}
-
-	}
-
 	// METOD: Skriver ut skierList
 	private void printSkierList() {
 		for (Skier newSkier : race.getSkierList()) {
@@ -136,8 +101,6 @@ public class Application {
 	}
 
 	// METOD: Skriver ut listan för goaltime
-	// "Startnummer: #" skierNumber "Namn: " firstName lastName
-	// "Målgång: " goalTime
 	private void printSkierGoalTime() {
 		CompareGoalTime goalCheck = new CompareGoalTime(); // Jämför måltid
 		Collections.sort(race.getSkierList(), goalCheck);
@@ -149,12 +112,15 @@ public class Application {
 			System.out.println(formattedGoalTime + "\t\t#"	+ race.getSkierList().get(i).getSkierNumber() + "\t\t\t" + (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " " + race.getSkierList().get(i).getLastName());
 		}
 	}
+
 	// METOD: Skriver ut listan för mellantid
 	private void printSkierTempTime() {
 		CompareTempTime tempCheck = new CompareTempTime(); // Jämför mellantid
 		Collections.sort(race.getSkierList(), tempCheck);
 
+
 		System.out.println("Mellantid\t\t#Startnr\t\tPlacering\t\tNamn");
+
 		for (int i = 0; i < race.getSkierList().size(); i++) {
 
 			LocalTime currentTempTime = Timing.calcDuration(race.getSkierList().get(i).getIndivStartTime());
