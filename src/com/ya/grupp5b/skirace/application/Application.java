@@ -1,6 +1,7 @@
 package com.ya.grupp5b.skirace.application;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
@@ -134,30 +135,33 @@ public class Application {
 		}
 	}
 
-	// METOD: Skriver ut listan för GoalTime utskrift "Startnr: " firstName lastName
+	// METOD: Skriver ut listan för goaltime
+	// "Startnummer: #" skierNumber "Namn: " firstName lastName
 	// "Målgång: " goalTime
 	private void printSkierGoalTime() {
 		CompareGoalTime goalCheck = new CompareGoalTime(); // Jämför måltid
 		Collections.sort(race.getSkierList(), goalCheck);
-		System.out.println("\nNamn\t\t\t#Startnr\t\tMålgång\t\t\tPlacering");
+
+		System.out.println("Målgångstid\t\t#Startnr\t\tPlacering\t\tNamn");
 		for (int i = 0; i < race.getSkierList().size(); i++) {
-			System.out.println(race.getSkierList().get(i).getFirstName() + " "
-					+ race.getSkierList().get(i).getLastName() + "\t\t#" + race.getSkierList().get(i).getSkierNumber()
-					+ "\t\t\t" + race.getSkierList().get(i).getGoalTime() + "\t\t" + (i + 1) + "\n");
+			DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss:SSSSSS"); // formatting options
+	        String formattedGoalTime = race.getSkierList().get(i).getGoalTime().format(formatPattern); 
+			System.out.println(formattedGoalTime + "\t\t#"	+ race.getSkierList().get(i).getSkierNumber() + "\t\t\t" + (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " " + race.getSkierList().get(i).getLastName());
 		}
 	}
-
-	private void printSkierTempTime() {		
+	// METOD: Skriver ut listan för mellantid
+	private void printSkierTempTime() {
 		CompareTempTime tempCheck = new CompareTempTime(); // Jämför mellantid
 		Collections.sort(race.getSkierList(), tempCheck);
-		
-		System.out.println("\nNamn\t\t\t#Startnr\t\tMellantid\t\t\tPlacering");
+
+		System.out.println("Mellantid\t\t#Startnr\t\tPlacering\t\tNamn");
 		for (int i = 0; i < race.getSkierList().size(); i++) {
 
 			LocalTime currentTempTime = Timing.calcDuration(race.getSkierList().get(i).getIndivStartTime());
-			System.out.println(race.getSkierList().get(i).getFirstName() + " "
-					+ race.getSkierList().get(i).getLastName() + "\t\t#" + race.getSkierList().get(i).getSkierNumber()
-					+ "\t\t\t" + currentTempTime + "\t\t" + (i + 1) + "\n");
+			DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss:SSSSSS"); // formatting options
+	        String formattedcurrentTempTime = currentTempTime.format(formatPattern); 
+
+			System.out.println(formattedcurrentTempTime + "\t\t#" + race.getSkierList().get(i).getSkierNumber() + "\t\t\t" + (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " " + race.getSkierList().get(i).getLastName());
 		}
 	}
 
@@ -182,7 +186,7 @@ public class Application {
 		System.out.println("Mellantiden " + currentTempTime + " är tagen för skidåkare med startnummer #"
 				+ race.getSkierList().get(currentIndex).getSkierNumber() + ", "
 				+ race.getSkierList().get(currentIndex).getFirstName() + " "
-				+ race.getSkierList().get(currentIndex).getLastName() + ", placering: " + (currentIndex + 1));
+				+ race.getSkierList().get(currentIndex).getLastName() + ", placering: " + (currentIndex + 1)+"\n");
 	}
 
 	// METOD: val 2 i menyn - dvs. registrera måltid för vald åkare
@@ -199,13 +203,15 @@ public class Application {
 			}
 		}
 
-		race.getSkierList().get(currentIndex).setGoalTime(Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime()));
-		
-		System.out.println("Målgångstiden " + race.getSkierList().get(currentIndex).getGoalTime() + " är registrerad för skidåkare med startnummer #"
+		race.getSkierList().get(currentIndex)
+				.setGoalTime(Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime()));
+
+		System.out.println("Målgångstiden " + race.getSkierList().get(currentIndex).getGoalTime()
+				+ " är registrerad för skidåkare med startnummer #"
 				+ race.getSkierList().get(currentIndex).getSkierNumber() + ", "
 				+ race.getSkierList().get(currentIndex).getFirstName() + " "
 				+ race.getSkierList().get(currentIndex).getLastName() + "\n");
-		
+
 	}
 
 }
