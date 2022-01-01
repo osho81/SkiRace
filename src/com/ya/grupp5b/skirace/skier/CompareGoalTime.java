@@ -9,26 +9,43 @@ public class CompareGoalTime implements Comparator<Skier> {
 	@Override
 	public int compare(Skier skier1, Skier skier2) {
 
-		// Låt stå, testar detta vid tillfälle /Osama
-		// possible solution for handling nulls:
-		// ternary condition; Example:
-		// boolean noDur1 = false;
-		// Duration duration1 = skier1.getGoalTime() == null ? noDur1 = true :
-		// Duration.between(testTime, skier1.getGoalTime());
-
-		LocalTime testTime = LocalTime.of(0, 0, 0, 0);
-		Duration duration1 = Duration.between(testTime, skier1.getGoalTime());
-		int durationInSec1 = (int) duration1.toSeconds();
-		Duration duration2 = Duration.between(testTime, skier2.getGoalTime());
-		int durationInSec2 = (int) duration2.toSeconds();
-
-		if (durationInSec1 < durationInSec2) { // || noDur1 (== true)
+		LocalTime testTime = LocalTime.of(0, 0, 0, 0);	
+		
+		if (skier1.getGoalTime() == null) {
 			return -1;
-		} else if (durationInSec1 > durationInSec2) {
+		} else if (skier2.getGoalTime() == null) {
 			return 1;
-		} else {
+		} else if (skier1.getGoalTime() == null && skier2.getGoalTime() == null) {
 			return 0;
+		} else {
+			Duration duration1 = Duration.between(testTime, skier1.getGoalTime());
+			int durationInSec1 = (int) duration1.toSeconds();
+			Duration duration2 = Duration.between(testTime, skier2.getGoalTime());
+		    int durationInSec2 = (int) duration2.toSeconds();
+			if (durationInSec1 < durationInSec2) {
+				return -1;
+			} else if (durationInSec1 > durationInSec2) {
+				return 1;
+			} else {
+				return 0;
+			}
 		}
+		
+		
+		/////////////// Previous solution without handling nulls //////////////
+		
+//		Duration duration1 = Duration.between(testTime, skier1.getGoalTime());
+//		int durationInSec1 = (int) duration1.toSeconds();
+//		Duration duration2 = Duration.between(testTime, skier2.getGoalTime());
+//		int durationInSec2 = (int) duration2.toSeconds();
+
+//		if (durationInSec1 < durationInSec2 || duration1 == null) { // || noDur1 (== true)
+//			return -1;
+//		} else if (durationInSec1 > durationInSec2 || duration2 == null) {
+//			return 1;
+//		} else {
+//			return 0;
+//		}
 
 	}
 
