@@ -8,15 +8,17 @@ public class Menu {
 		System.out.println("1. Skapa tävling");
 		System.out.println("2. Avsluta");
 		System.out.print("Val: ");
+		System.out.println();
 	}
 	
 	public void printInnerMenu() {
+		System.out.println();
 		System.out.println("1. Visa mellantid & placering ");
 		System.out.println("2. Tidtagning målgång");
 		System.out.println("3. Visa måltid & placering");
 		System.out.println("4. Avsluta");
 		System.out.print("Val: ");
+		System.out.println();
 	}
-	
 	
 }
