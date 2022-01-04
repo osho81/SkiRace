@@ -46,7 +46,7 @@ public class Application {
 	private void runInnerMenu() {
 
 		int menuChoice = 0;
-		while (menuChoice != 5) {
+		while (menuChoice != 6) {
 
 			menu.printInnerMenu();
 			menuChoice = Input.readInt();
@@ -56,16 +56,18 @@ public class Application {
 				Output.printSkierList(race);
 				break;
 			case 2:
-				Input.checkTempTime(race); // Kolla mellantid & placering för vald åkare
-				Output.printSkierTempTime(race);
+				Input.regTempTime(race); // Registrera mellantid för vald åkare
 				break;
 			case 3:
 				Input.regGoalTime(race); // Registrera måltid för vald åkare
 				break;
-			case 4:
-				Output.printSkierGoalTime(race);
+			case 4:			
+				Output.printSkierTempTime(race);
 				break;
 			case 5:
+				Output.printSkierGoalTime(race);
+				break;
+			case 6:
 				System.out.println("Stänger ned...");
 				System.exit(0);
 				break;

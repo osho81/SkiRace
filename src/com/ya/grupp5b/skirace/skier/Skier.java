@@ -10,6 +10,7 @@ public class Skier extends Person implements Comparable<Skier> {
 	private int skierNumber;
 	private LocalTime indivStartTime;
 	private LocalTime goalTime;
+	private LocalTime tempTime;
 
 	// Constructor 1
 	public Skier(String firstName, String lastName) {
@@ -45,6 +46,14 @@ public class Skier extends Person implements Comparable<Skier> {
 
 	public void setGoalTime(LocalTime goalTime) {
 		this.goalTime = goalTime;
+	}
+
+	public LocalTime getTempTime() {
+		return tempTime;
+	}
+
+	public void setTempTime(LocalTime tempTime) {
+		this.tempTime = tempTime;
 	}
 
 	@Override
