@@ -28,7 +28,7 @@ public class Timing {
 			System.out.println("Obs! Loppet har inte börjat än");
 		}
 
-		return LocalTime.of(0, 0, 0, 0);
+		return null;
 	}
 
 }
