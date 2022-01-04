@@ -8,6 +8,7 @@ public class CompareTempTime implements Comparator<Skier> {
 	
 	public int compare(Skier skier1, Skier skier2) {
 		LocalTime nowTime = LocalTime.now();
+		// Kan lägga till nowTime.plus(15 * skier1.getStartNr)
 		Duration duration1 = Duration.between(nowTime, skier1.getIndivStartTime());
 		int durationInSec1 = (int) duration1.toSeconds();
 		Duration duration2 = Duration.between(nowTime, skier2.getIndivStartTime());
