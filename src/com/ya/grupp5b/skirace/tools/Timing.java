@@ -25,7 +25,7 @@ public class Timing {
 		try {
 			return LocalTime.of(durationH, durationM, durationS, durationNs);
 		} catch (DateTimeException e) {
-			System.out.println("Loppet har inte börjat än");
+			System.out.println("Obs! Loppet har inte börjat än");
 		}
 
 		return LocalTime.of(0, 0, 0, 0);

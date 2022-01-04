@@ -1,10 +1,9 @@
-package com.ya.grupp5b.skirace.application;
+package com.ya.grupp5b.skirace.race;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
-import com.ya.grupp5b.skirace.race.Race;
 import com.ya.grupp5b.skirace.skier.CompareGoalTime;
 import com.ya.grupp5b.skirace.skier.CompareTempTime;
 import com.ya.grupp5b.skirace.skier.Skier;
@@ -126,12 +125,15 @@ public class Application {
 		for (int i = 0; i < race.getSkierList().size(); i++) {
 			DateTimeFormatter formatPattern = DateTimeFormatter.ofPattern("HH:mm:ss:SSSSSS"); // formatting options
 
-			// Ternary added 220101 to fix null regarding formatting in this code here
 			String formattedGoalTime = race.getSkierList().get(i).getGoalTime() == null
-					? formattedGoalTime = "Ej gått i mål"
+					? formattedGoalTime = "--\t"
 					: race.getSkierList().get(i).getGoalTime().format(formatPattern);
+			
+			String place = race.getSkierList().get(i).getGoalTime() == null
+					? place = "--" : "" + (i + 1); // "" + är genväg till stringomvandling
+					
 			System.out.println(formattedGoalTime + "\t\t#" + race.getSkierList().get(i).getSkierNumber() + "\t\t\t"
-					+ (i + 1) + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " "
+					+ place + "\t\t\t" + race.getSkierList().get(i).getFirstName() + " "
 					+ race.getSkierList().get(i).getLastName());
 		}
 	}
