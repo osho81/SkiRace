@@ -1,6 +1,6 @@
 package com.ya.grupp5b.skirace.tools;
 
-public class Menu {
+public class MenuOutput {
 
 	public void printMenu() {
 		System.out.println("1. Skapa tävling");

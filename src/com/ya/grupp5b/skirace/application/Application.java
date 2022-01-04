@@ -1,16 +1,15 @@
 package com.ya.grupp5b.skirace.application;
 
-import java.time.LocalTime;
 import java.util.Collections;
+
 import com.ya.grupp5b.skirace.race.Race;
-import com.ya.grupp5b.skirace.skier.CompareTempTime;
 import com.ya.grupp5b.skirace.tools.*;
 
 public class Application {
 
 	// Nödvändiga objekt
 	private Race race = new Race();
-	private Menu menu = new Menu();
+	private MenuOutput menu = new MenuOutput();
 
 	// METOD: Kör hela applikationen
 	public void runSkiRace() {
@@ -57,11 +56,11 @@ public class Application {
 				Output.printSkierList(race);
 				break;
 			case 2:
-				checkTempTime(); // Kolla mellantid & placering för vald åkare
+				Input.checkTempTime(race); // Kolla mellantid & placering för vald åkare
 				Output.printSkierTempTime(race);
 				break;
 			case 3:
-				regGoalTime(); // Registrera måltid för vald åkare
+				Input.regGoalTime(race); // Registrera måltid för vald åkare
 				break;
 			case 4:
 				Output.printSkierGoalTime(race);
@@ -75,47 +74,6 @@ public class Application {
 				break;
 			}
 		}
-	}
-
-	// METOD: val 3 i menyn - dvs. checka specific tävlandes löpta tid & placering
-	private void checkTempTime() {
-		CompareTempTime tempCheck = new CompareTempTime(); // Jämför mellantid
-		Collections.sort(race.getSkierList(), tempCheck);
-
-		System.out.println("\nVilken tävlande vill du kolla nuvarande mellantid & placering för?");
-		int chosenStartNum = Input.readInt();
-		int currentIndex = 0;
-
-		// Hitta <index> för den önskade tävlande, via det valda start nr
-		for (var skier : race.getSkierList()) {
-			if (skier.getSkierNumber() == chosenStartNum) {
-				currentIndex = race.getSkierList().indexOf(skier);
-			}
-		}
-
-		// Kom åt starttid för objektet på det funna indexet
-		LocalTime currentTempTime = Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime());
-		Output.printChosenTempTime(currentIndex, currentTempTime, race);
-	}
-
-	// METOD: val 2 i menyn - dvs. registrera måltid för vald åkare
-	private void regGoalTime() {
-
-		System.out.println("\nVilken tävlande vill du registrera måltid för? ");
-		int chosenStartNum = Input.readInt();
-		int currentIndex = 0;
-
-		// Hitta <index> för den önskade tävlande, via det valda start nr
-		for (var skier : race.getSkierList()) {
-			if (skier.getSkierNumber() == chosenStartNum) {
-				currentIndex = race.getSkierList().indexOf(skier);
-			}
-		}
-
-		race.getSkierList().get(currentIndex)
-				.setGoalTime(Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime()));
-
-		Output.printChosenGoalTime(currentIndex, race);
 	}
 
 }
