@@ -1,9 +1,10 @@
-package com.ya.grupp5b.skirace.race;
+package com.ya.grupp5b.skirace.application;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
+import com.ya.grupp5b.skirace.race.Race;
 import com.ya.grupp5b.skirace.skier.CompareGoalTime;
 import com.ya.grupp5b.skirace.skier.CompareTempTime;
 import com.ya.grupp5b.skirace.skier.Skier;
