@@ -11,7 +11,7 @@ class SkierTest {
 	
 	@Test
 	void testSkierStringString() {
-		
+
 		Skier skier1 = new Skier("Kalle", "Anka");
 		skier1.setSkierNumber(2);
 		

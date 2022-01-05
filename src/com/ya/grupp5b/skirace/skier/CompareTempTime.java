@@ -3,8 +3,13 @@ package com.ya.grupp5b.skirace.skier;
 import java.time.Duration;
 import java.util.Comparator;
 
+/**
+ * Klass för extern jämförare, jämför mellantider mellan Skiers
+ */
+
 public class CompareTempTime implements Comparator<Skier> {
 
+	@Override
 	public int compare(Skier skier1, Skier skier2) {
 
 		if (skier1.getTempTime() == null) {
