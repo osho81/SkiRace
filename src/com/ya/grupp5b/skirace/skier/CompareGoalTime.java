@@ -30,22 +30,6 @@ public class CompareGoalTime implements Comparator<Skier> {
 				return 0;
 			}
 		}
-		
-		
-		/////////////// Previous solution without handling nulls //////////////
-		
-//		Duration duration1 = Duration.between(testTime, skier1.getGoalTime());
-//		int durationInSec1 = (int) duration1.toSeconds();
-//		Duration duration2 = Duration.between(testTime, skier2.getGoalTime());
-//		int durationInSec2 = (int) duration2.toSeconds();
-
-//		if (durationInSec1 < durationInSec2 || duration1 == null) { // || noDur1 (== true)
-//			return -1;
-//		} else if (durationInSec1 > durationInSec2 || duration2 == null) {
-//			return 1;
-//		} else {
-//			return 0;
-//		}
 
 	}
 
