@@ -11,10 +11,10 @@ import com.ya.grupp5b.skirace.tools.Input;
 public class AddSkier {
 
 	// METOD: Användaren får lägga till antal åkare och åkare
-	public static void addSkier(Race race) {
+	public static void addSkier(Race race, Input input) {
 
 		System.out.println("Hur många ska tävla? ");
-		int totalSkiers = Input.readInt();
+		int totalSkiers = input.readInt();
 
 		List<Integer> numbersList = new Vector<Integer>();
 
@@ -22,9 +22,9 @@ public class AddSkier {
 		for (int i = 1; i <= totalSkiers; i++) {
 			numbersList.add(i);
 			System.out.println("Förnamn: ");
-			String firstName = Input.readString();
+			String firstName = input.readString();
 			System.out.println("Efternamn: ");
-			String lastName = Input.readString();
+			String lastName = input.readString();
 			Skier newSkier = new Skier(firstName, lastName);
 			race.setSkierList(newSkier);
 		}

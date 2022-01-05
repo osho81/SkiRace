@@ -10,6 +10,8 @@ public class Application {
 	// Nödvändiga objekt
 	private Race race = new Race();
 	private MenuOutput menu = new MenuOutput();
+	private Output output = new Output(); 
+	private Input input = new Input(); 
 
 	// METOD: Kör hela applikationen
 	public void runSkiRace() {
@@ -23,12 +25,12 @@ public class Application {
 		while (menuChoice != 2) {
 
 			menu.printMenu();
-			menuChoice = Input.readInt();
+			menuChoice = input.readInt();
 
 			switch (menuChoice) {
 			case 1:
-				race.setRaceStart(Input.selectStartTime());
-				AddSkier.addSkier(race);
+				race.setRaceStart(input.selectStartTime());
+				AddSkier.addSkier(race, input);
 				Collections.sort(race.getSkierList());// Sorterar efter startnummer
 				runInnerMenu();
 				break;
@@ -49,23 +51,26 @@ public class Application {
 		while (menuChoice != 6) {
 
 			menu.printInnerMenu();
-			menuChoice = Input.readInt();
+			menuChoice = input.readInt();
+			int currentIndex;
 
 			switch (menuChoice) {
 			case 1:
-				Output.printSkierList(race);
+				output.printSkierList(race);
 				break;
 			case 2:
-				Input.regTempTime(race); // Registrera mellantid för vald åkare
+				currentIndex = input.regTempTime(race, output); // Registrera mellantid för vald åkare
+				output.printChosenTempTime(currentIndex, race);
 				break;
 			case 3:
-				Input.regGoalTime(race); // Registrera måltid för vald åkare
+				currentIndex = input.regGoalTime(race, output); // Registrera måltid för vald åkare
+				output.printChosenGoalTime(currentIndex, race);
 				break;
 			case 4:			
-				Output.printSkierTempTime(race);
+				output.printSkierTempTime(race);
 				break;
 			case 5:
-				Output.printSkierGoalTime(race);
+				output.printSkierGoalTime(race);
 				break;
 			case 6:
 				System.out.println("Stänger ned...");

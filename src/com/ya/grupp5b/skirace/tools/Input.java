@@ -10,7 +10,7 @@ public class Input {
 	private static Scanner scan = new Scanner(System.in);
 
 	// METOD: Användaren får välja starttid för tävlingen
-	public static LocalTime selectStartTime() {
+	public LocalTime selectStartTime() {
 		System.out.println("Vilken tid startar tävlingen?");
 		System.out.println("Starttid timme: ");
 		int h = readInt();
@@ -41,7 +41,7 @@ public class Input {
 		return raceStart;
 	}
 
-	public static String readString() {
+	public String readString() {
 		while (!scan.hasNextLine()) { // Försök fixa så man inte kan skriva in siffror
 			System.out.println("Felaktig inmatning \nProva igen: ");
 		}
@@ -50,7 +50,7 @@ public class Input {
 	}
 
 	// Skapa en metod som kan läsa klockslag
-	public static int readInt() {
+	public int readInt() {
 		while (!scan.hasNextInt()) {
 			scan.nextLine();
 			System.out.print("Felaktig inmatning \nProva igen: ");
@@ -64,10 +64,10 @@ public class Input {
 
 
 	// METOD: val 3 i menyn - dvs. registrera målgångstid för vald åkare
-	public static void regGoalTime(Race race) {
+	public int regGoalTime(Race race, Output output) {
 
 		System.out.println("\nVilken tävlande vill du registrera målgångstid för? ");
-		int chosenStartNum = Input.readInt();
+		int chosenStartNum = readInt();
 		int currentIndex = 0;
 
 		// Hitta <index> för den önskade tävlande, via det valda start nr
@@ -79,15 +79,15 @@ public class Input {
 
 		race.getSkierList().get(currentIndex)
 				.setGoalTime(Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime()));
-
-		Output.printChosenGoalTime(currentIndex, race);
+		
+		return currentIndex;
 	}
 	
 	// METOD: val 2 i menyn - dvs. registrera mellantid för vald åkare
-	public static void regTempTime(Race race) {
+	public int regTempTime(Race race, Output output) {
 
 		System.out.println("\nVilken tävlande vill du registrera mellantid för? ");
-		int chosenStartNum = Input.readInt();
+		int chosenStartNum = readInt();
 		int currentIndex = 0;
 
 		// Hitta <index> för den önskade tävlande, via det valda start nr
@@ -100,6 +100,6 @@ public class Input {
 		race.getSkierList().get(currentIndex)
 				.setTempTime(Timing.calcDuration(race.getSkierList().get(currentIndex).getIndivStartTime()));
 
-		Output.printChosenTempTime(currentIndex, race);
+		return currentIndex;
 	}
 }
