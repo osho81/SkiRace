@@ -11,14 +11,14 @@ import com.ya.grupp5b.skirace.skier.Skier;
 public class Output {
 
 	// METOD: Skriver ut skierList
-	public static void printSkierList(Race race) {
+	public void printSkierList(Race race) {
 		for (Skier newSkier : race.getSkierList()) {
 			System.out.println(newSkier);
 		}
 	}
 
 	// METOD: Skriver ut listan för goaltime
-	public static void printSkierGoalTime(Race race) {
+	public void printSkierGoalTime(Race race) {
 		CompareGoalTime goalCheck = new CompareGoalTime(); // Jämför måltid
 		Collections.sort(race.getSkierList(), goalCheck);
 
@@ -42,7 +42,7 @@ public class Output {
 	}
 
 	// METOD: Skriver ut listan för mellantid
-	public static void printSkierTempTime(Race race) {
+	public void printSkierTempTime(Race race) {
 		CompareTempTime tempCheck = new CompareTempTime(); // Jämför mellantid
 		Collections.sort(race.getSkierList(), tempCheck);
 		race.getSkierList().get(0);
@@ -67,7 +67,7 @@ public class Output {
 	}
 
 	// Skriver ut temptid för vald åkare
-	public static void printChosenTempTime(int currentIndex, Race race) {
+	public void printChosenTempTime(int currentIndex, Race race) {
 
 		if (race.getSkierList().get(currentIndex).getTempTime() == null) {
 			System.out.println("Ingen mellantid kan registreras ännu");
@@ -83,7 +83,7 @@ public class Output {
 	}
 
 	// Skriver ut målgångstid för vald åkare
-	public static void printChosenGoalTime(int currentIndex, Race race) {
+	public void printChosenGoalTime(int currentIndex, Race race) {
 
 		if (race.getSkierList().get(currentIndex).getGoalTime() == null) {
 			System.out.println("Ingen målgångstid kan registreras ännu");

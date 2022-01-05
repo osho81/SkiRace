@@ -12,8 +12,6 @@ public class Race {
 	private List<Skier> skierList;
 	
 
-	
-	
 	public Race() {
 		super();
 		skierList = new ArrayList<Skier>();	
