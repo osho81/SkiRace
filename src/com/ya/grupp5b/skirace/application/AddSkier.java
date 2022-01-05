@@ -34,9 +34,8 @@ public class AddSkier {
 			int randomValue = (int) (Math.random() * (1 * j));
 			Skier newSkier = race.getSkierList().get(j - 1);
 			newSkier.setSkierNumber(numbersList.get(randomValue));
-			// Ta bort redan tilldelat nummer ur numbersList (så att det inte går att få
-			// samma nr)
-			numbersList.remove(randomValue);
+			
+			numbersList.remove(randomValue); // Ta bort tilldelat nummer ur numbersList (så man inte kan få samma startnr)
 
 		}
 

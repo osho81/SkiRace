@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import com.ya.grupp5b.skirace.tools.Input;
 
 class InputTest {
-
+Input input = new Input();
 	@Test 
 	void testInputs() {
 		System.out.println("Skriv in: 1");
-		assertEquals(Input.readInt(), 1);
+		assertEquals(input.readInt(), 1);
 		System.out.println("Skriv in: test");
-		assertEquals(Input.readString(), "test");
+		assertEquals(input.readString(), "test");
 	}
 
 	@Test
@@ -25,6 +25,6 @@ class InputTest {
 		nowTime = LocalTime.of(nowTime.getHour(), nowTime.getMinute());
 			
 		
-		assertEquals(nowTime, Input.selectStartTime());
+		assertEquals(nowTime, input.selectStartTime());
 	}
 }

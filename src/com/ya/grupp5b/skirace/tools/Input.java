@@ -7,7 +7,7 @@ import com.ya.grupp5b.skirace.race.Race;
 
 public class Input {
 
-	private static Scanner scan = new Scanner(System.in);
+	private Scanner scan = new Scanner(System.in);
 
 	// METOD: Användaren får välja starttid för tävlingen
 	public LocalTime selectStartTime() {
