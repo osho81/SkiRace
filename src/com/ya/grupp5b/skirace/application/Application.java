@@ -5,13 +5,17 @@ import java.util.Collections;
 import com.ya.grupp5b.skirace.race.Race;
 import com.ya.grupp5b.skirace.tools.*;
 
+/**
+ * Klass som hanterar programlogik
+ */
+
 public class Application {
 
 	// Nödvändiga objekt
 	private Race race = new Race();
 	private MenuOutput menu = new MenuOutput();
-	private Output output = new Output(); 
-	private Input input = new Input(); 
+	private Output output = new Output();
+	private Input input = new Input();
 
 	// METOD: Kör hela applikationen
 	public void runSkiRace() {
@@ -66,7 +70,7 @@ public class Application {
 				currentIndex = input.regGoalTime(race, output); // Registrera måltid för vald åkare
 				output.printChosenGoalTime(currentIndex, race);
 				break;
-			case 4:			
+			case 4:
 				output.printSkierTempTime(race);
 				break;
 			case 5:

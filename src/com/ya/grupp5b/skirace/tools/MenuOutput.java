@@ -1,7 +1,12 @@
 package com.ya.grupp5b.skirace.tools;
 
+/**
+ * Klass som hanterar metoder för menyutskrift
+ */
+
 public class MenuOutput {
 
+	//METOD: Skriver ut yttre meny
 	public void printMenu() {
 		System.out.println("1. Skapa tävling");
 		System.out.println("2. Avsluta");
@@ -9,6 +14,7 @@ public class MenuOutput {
 		System.out.println();
 	}
 
+	//METOD: Skriver ut inre meny
 	public void printInnerMenu() {
 		System.out.println();
 		System.out.println("1. Visa deltagarlista");

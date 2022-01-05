@@ -6,18 +6,20 @@ import java.util.List;
 
 import com.ya.grupp5b.skirace.skier.Skier;
 
+/**
+ * Klass som agerar blueprint för Race
+ */
+
 public class Race {
 
 	private LocalTime raceStart;
 	private List<Skier> skierList;
-	
 
 	public Race() {
 		super();
-		skierList = new ArrayList<Skier>();	
-		
+		skierList = new ArrayList<Skier>();
 	}
-	
+
 	public LocalTime getRaceStart() {
 		return raceStart;
 	}
@@ -32,7 +34,6 @@ public class Race {
 
 	public void setSkierList(Skier skier) {
 		this.skierList.add(skier);
-	}	
-	
+	}
 
 }

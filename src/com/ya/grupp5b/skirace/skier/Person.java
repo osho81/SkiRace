@@ -1,6 +1,11 @@
 package com.ya.grupp5b.skirace.skier;
 
-public class Person {
+/**
+ * Abstrakt klass som Skier ärver ifrån
+ */
+
+public abstract class Person {
+	
 	protected String firstName;
 	protected String lastName;
 

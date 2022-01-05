@@ -3,7 +3,10 @@ package com.ya.grupp5b.skirace.skier;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * Klass som agerar blueprint för Skier
+ * Ärver ifrån Person
+ */
 
 public class Skier extends Person implements Comparable<Skier> {
 
@@ -12,13 +15,11 @@ public class Skier extends Person implements Comparable<Skier> {
 	private LocalTime goalTime;
 	private LocalTime tempTime;
 
-	// Constructor 1
 	public Skier(String firstName, String lastName) {
 		super(firstName, lastName);
 
 	}
 
-	// Constructor 2
 	public Skier(int skierNumber) {
 		super();
 		this.skierNumber = skierNumber;
@@ -64,6 +65,7 @@ public class Skier extends Person implements Comparable<Skier> {
         return String.format("Starttid: " + formattedIndivStartTime + "  Startnummer: #"+ skierNumber + " Namn: " + firstName + " " + lastName);
 	}
 	
+	//METOD: Sorterar efter startnummer
 	@Override
     public int compareTo(Skier otherSkier) {
 
