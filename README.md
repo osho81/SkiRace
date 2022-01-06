@@ -8,7 +8,7 @@ Grupp 5b
 
 Pernilla Gidlund, Osama Hourani, Filip Mellberg, Jonathan Åström
 
-## Description
+## Beskrivning
 Applikation som används vid längdskidstävling. 
 
 Används av supporter/ledare för att kunna ta mellantider på åkare längs skidspåret.
